@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Restaurant Menu Fase 2</title>
+<script type="text/javascript"></script>
+</head>
+<body>
+
+<form id="Menu">
+
+      Plate: <input type="text" id="plate" /><br>
+      Price: <input type="number" id="price" /><br>
+
+</form>
+
+<input type="button" onclick="addToMenu()" value="Add Plate"/><br><br>
+<input type="button" onclick="showMenu()" value="Show Menu"/>
+<input type="button" onclick="startOrdering()" value="Ready to order?"/>
+
+<p id="output"></p>
+<script>
+    
+    var bill5 = 5;
+    var bill10 = 10;
+    var bill20 = 20;
+    var bill50 = 50;
+    var bill100 = 100;
+    var bill200 = 200;
+    var bill500 = 500;
+
+    var totalOrder = 0;
+
+    var plates = [];
+    var prices = [];
+
+    function addToMenu(){
+        
+        var plate = document.getElementById("plate").value;
+        var price = parseFloat(document.getElementById("price").value);
+        plates.push(plate);
+        prices.push(price);
+        document.getElementById("Menu").reset();
+    }
+
+    function showMenu(){
+        var menu = "";
+        for(i = 0; i < plates.length; i++){
+            menu += plates[i] + ": " + prices[i] + "€<br>";
+        }
+        document.getElementById("output").innerHTML = menu;
+
+    }
+
+    function startOrdering(){
+        var orderList = [];
+        alert("Please enter one by one the dishes you want to order. When you finish your order type 'stop'");
+        stop = false;
+        do{
+           var ordering = prompt("What will you want?: ");
+           if(ordering == "stop"){
+               stop = true;
+           }
+           orderList.push(ordering);
+        }while(!stop);
+    }
+
+</script>
+</body>
+</html>
